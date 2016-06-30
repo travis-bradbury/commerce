@@ -493,6 +493,18 @@ class Order extends ContentEntityBase implements OrderInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    $fields['payment_gateway'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Payment gateway'))
+      ->setDescription(t('The payment gateway.'))
+      ->setRequired(TRUE)
+      ->setSetting('target_type', 'commerce_payment_gateway');
+
+    $fields['payment_method'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Payment method'))
+      ->setDescription(t('The payment method.'))
+      ->setRequired(TRUE)
+      ->setSetting('target_type', 'commerce_payment_method');
+
     $fields['data'] = BaseFieldDefinition::create('map')
       ->setLabel(t('Data'))
       ->setDescription(t('A serialized array of additional data.'));
